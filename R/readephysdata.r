@@ -12,6 +12,8 @@ readephysdata <- function(files, parallel = TRUE) {
 	else {
 		ephyslist <- lapply(files, read.csv, sep = ",", colClasses = "numeric")
 	}
+	# organize the data into a data frame
+# 	a <- rbind.fill(ephyslist)
 	# time taken
 	endtime <- timer()
 	timediff <- timer(start.time)
