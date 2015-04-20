@@ -1,10 +1,14 @@
 startanalysis <- function() {
+	source('~/src/workgroup/rtreadmillcode/timer.r')
+	source('~/src/workgroup/rephys/R/get_H1signal.r')
 	# temporarily function for testing purposes
-	setwd("~/data/ephys/")
+# 	setwd("~/data/ephys/")
+	setwd("~/data/h1example")
+# 	setwd("~/data/h1artificial")
 # 	setwd("~/wolke/work/ephysdata/")
 	files <- dir()
-	files <- files[1:10]
-	data <- readephysdata(files, parallel = FALSE)
+ 	files <- files[1:10]
+	data <- readephysdata(files, parallel = TRUE)
 	return(data)
 }
 
@@ -12,8 +16,8 @@ batch_spikes <- function(rawdata, std_factor = 1, min_isi = 1, sigma = NA) {
 	# a first try on copying the functionality of the matlab toolbox batch_spikes.m function
 	# more documentation might come in the future
 	
-	# separate data from filenames
-	filenames <- unlist(data[1])
+	# separate data from filenames. filenames becomes a vector of filenames, rawdata becomes a list of all data frames containing the data
+	filenames <- unlist(rawdata[1])
 	rawdata <- rawdata[2]
 	
 	# preallocate the matrix
