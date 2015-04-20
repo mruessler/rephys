@@ -9,23 +9,14 @@ gauss_filter <- function(signal, sigma) {
 		window_size <- window_size + 1
 	}
 	# generate filter
-	gauss_win <- 
-	 
-# 	 % generate filter
-# 	 gwin=gausswin(winsize, alpha);
-# 	 
-# 	 % normalize filter kernel
-# 	 gwin=gwin./sum(gwin);
-# 	 
-# 	 % compute signal mean
-# 	 signal_mean=mean(signal);
-# 	 
-# 	 % convolve zero-mean signal
-# 	 conv_result=conv(signal-signal_mean, gwin);
-# 	 
-# 	 % select valid section of the result and add mean
-# 	 filtered_signal=...
-# 	 conv_result((winsize-1)/2+1:end-(winsize-1)/2)+signal_mean;
-	 
-	return(filtered_signal)
+	gauss_window <- gausswin(window_size, alpha)
+	# normalize the filter kernel
+	gauss_window <- gauss_window / sum(gauss_window)
+	# compute the signal mean
+	signal_mean <- mean(signal)
+	# convolve zero-mean signal
+	signal_conv <- conv(signal - signal_mean, gauss_window)
+	# select valid section of the result and add mean
+	signal_filtered <- signal_conv(((window_size - 1) / 2 + 1):nrow(signal_filtered) - (window_size - 1) / 2) + signal_mean
+	return(signal_filtered)
 }
