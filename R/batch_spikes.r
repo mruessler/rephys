@@ -1,25 +1,29 @@
-startanalysis <- function() {
+startanalysis <- function(mc = TRUE) {
+	wd <- getwd()
 	source('~/src/workgroup/rtreadmillcode/timer.r')
 	source('~/src/workgroup/rephys/R/get_H1signal.r')
 	# temporarily function for testing purposes
-# 	setwd("~/data/ephys/")
-	setwd("~/data/h1example")
-# 	setwd("~/data/h1artificial")
+ 	setwd("~/data/ephys/")
+# 	setwd("~/data/h1example")
+#  	setwd("~/data/h1artificial")
 # 	setwd("~/wolke/work/ephysdata/")
 	files <- dir()
- 	files <- files[1:10]
-	data <- readephysdata(files, parallel = TRUE)
+ 	files <- files[1:3]
+	data <- readephysdata(files, mc = mc)
+# 	setwd(wd)
 	return(data)
 }
 
 batch_spikes <- function(rawdata, std_factor = 1, min_isi = 1, sigma = NA) {
-	# a first try on copying the functionality of the matlab toolbox batch_spikes.m function
-	# more documentation might come in the future
+	#' \code{autoplot} a first try on copying the functionality of the matlab toolbox batch_spikes.m function
+	#' more documentation might come in the future
+	#' std_factor = 1 is a good value for data with a really good signal to noise ratio
 	
 	# separate data from filenames. filenames becomes a vector of filenames, rawdata becomes a list of all data frames containing the data
+	print("hi")
 	filenames <- unlist(rawdata[1])
 	rawdata <- rawdata[2]
-	
+# 	do.call(cbind, rawdata)
 	# preallocate the matrix
 	# spikes <- matrix(data = NA, nrow = dim(rawdata[[1]][[1]])[1], ncol = length(filenames))
 	# preallocate an array. each file is in one column, data values are in rows, and channels are in layers (z axis)
