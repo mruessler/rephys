@@ -1,5 +1,9 @@
 readephysdata <- function(files, mc = TRUE) {
-	# a function to read ephys log files
+	#' \code{readephysdata} a function to read ephys log files. 
+	#' @param files a list of file names
+	#' @param mc enables or disables the use of multiple cores
+	#' @return a data frame with ephys data
+	# todo: add some checks for data validity (maybe filesize)
 	
 	# load the required libraries
 	library(parallel)
@@ -7,6 +11,7 @@ readephysdata <- function(files, mc = TRUE) {
 	# start the timer
 	start.time <- timer()
 	# create a list and fill it with the data
+	# multi core variant
 	if (mc == TRUE) {
 		ephyslist <- mclapply(files, read.csv, sep = ",", colClasses = "numeric")
 	}
@@ -17,8 +22,16 @@ readephysdata <- function(files, mc = TRUE) {
  	ephysdf <- do.call(cbind, ephyslist)
 	if (ncol(ephysdf) == length(files) * 2) {
 		print("Dual recording data detected")
+		# adapt the vector of filenames to match the columns
+		# first, double the elements
+		# files <- as.vector(sapply(files, function (x) rep(x,2)))
+		# todo
 	}
-	colnames(ephysdf) <- files
+	else {
+		# use filenames as column names
+		print("Single recording data detected")
+		# colnames(ephysdf) <- files
+	}
 	# time taken
 	endtime <- timer()
 	timediff <- timer(start.time)

@@ -1,7 +1,9 @@
 threshold_spikes <- function(signal, threshold, file) {
-	#' threshold_spikes
+	#' \code{threshold_spikes} apply a threshold to the input signal
 	#' @param signal numeric
-	#' apply a threshold to the input signal
+	#' @param threshold
+	#' @param file
+	#' 
 	
 	# check where the signal exceeds the threshold an convert the resulting vector to numeric values of 0 and 1
 	ts <- (signal > threshold) + 0

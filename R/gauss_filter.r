@@ -1,5 +1,7 @@
 gauss_filter <- function(signal, sigma) {
-	# this function applies a gaussian convolution filter to the input signal. the window width is specified by sigma
+	#' \code{gauss_filter} this function applies a gaussian convolution filter to the input signal. the window width is specified by sigma
+	#' @param signal
+	#' @param sigma
 	
 	# calculate window size
 	alpha <- 2.5
