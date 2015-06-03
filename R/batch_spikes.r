@@ -27,7 +27,7 @@ batch_spikes <- function(rawdata, std_factor = 1, min_isi = 1, sigma = NA) {
 		signal <- get_H1signal(rawdata[[1]][[i]])
 
 		# filter the signal if sigma was specified
-		if (is.na("sigma") == FALSE) {
+		if (is.na(sigma) == FALSE) {
 			# sigma is not yet implemented
 		}
 		# compute threshold value; m and s have the dim(1, 2)
