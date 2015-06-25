@@ -5,8 +5,10 @@ startanalysis <- function(mc = TRUE) {
 
 	wd <- getwd()
 	# load all the scripts
-	scripts <- paste("R/", dir("R"), sep = "")
-	sapply(scripts, source, .GlobalEnv)
+	scripts <- paste("R/", dir("R", pattern = "*.r$"), sep = "")
+	if (length(scripts) > 1) {
+		sapply(scripts, source, .GlobalEnv)
+	}
 	# temporarily function for testing purposes
 	# setwd("~/datarepos/ephys/data")
 	# 	setwd("~/data/h1example")
