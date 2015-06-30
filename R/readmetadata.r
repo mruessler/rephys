@@ -3,7 +3,7 @@ readmetadata <- function(datafolder, metafolder) {
 	#' 
 	#' @param datafolder where the data files are located
 	#' @param metafolder where the metadata files are located
-	#' @return returns a list with metadata
+	#' @return returns a list with metadata for all files from the data folder
 	#' @export
 
 	# check whether the folder contains the folder meta with grepl(ogical)
@@ -20,16 +20,16 @@ readmetadata <- function(datafolder, metafolder) {
 	# read in the list of metadata file names
 	metanames <- dir(path = metafolder, pattern = ".csv")
 	# compare the filelists
-	if (!all.equal(datanames, metanames)) {
-		stop("Error: There are differences between data and metadata.")
+	if (!identical(datanames, metanames)) {
+		stop("There are differences between data and metadata.")
 	}
 	# read in the metadata. metalist will be a list of data frames
 	metalist <- mclapply(paste(metafolder, metanames, sep = ""), read.csv, header = FALSE, sep = ",")
 	# clean up the data—remove columns that only contain NA values if present
 	metalist <- mclapply(metalist, Filter, f = function(x) {!all(is.na(x))})
 	# change the column names of the data frames
-	metalist <- mclapply(metalist, function(e) {colnames(e) <- c("parameter", "value"); e})
+	metalist <- mclapply(metalist, function(x) {colnames(x) <- c("parameter", "value"); x})
 	# create datetime objects
-	metalist <- mclapply(metalist, function(g) {strptime(dt, format = "%F--%H-%M-%S"); g})
+	metalist <- mclapply(metalist, function(x) {strptime(x, format = "%F--%H-%M-%S"); x})
 	return(metalist)
 }
