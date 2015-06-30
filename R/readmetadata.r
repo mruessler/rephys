@@ -28,8 +28,8 @@ readmetadata <- function(datafolder, metafolder) {
 	# clean up the data—remove columns that only contain NA values if present
 	metalist <- mclapply(metalist, Filter, f = function(x) {!all(is.na(x))})
 	# change the column names of the data frames
-	metalist <- mclapply(metalist, function(x) {colnames(x) <- c("parameter", "value"); x})
+	metalist <- mclapply(metalist, function(x) {colnames(x) <- c("parameter", "value")})
 	# create datetime objects
-	metalist <- mclapply(metalist, function(x) {strptime(x, format = "%F--%H-%M-%S"); x})
+	metalist <- mclapply(metalist, function(x) {strptime(x, format = "%F--%H-%M-%S")})
 	return(metalist)
 }
