@@ -1,12 +1,10 @@
 threshold_spikes <- function(signal, threshold, file) {
 	#' \code{threshold_spikes} apply a threshold to the input signal and return a vector of 0 and 1
 	#' @param signal numeric vector of ephys data
-	#' @param threshold
+	#' @param threshold numeric value
 	#' @param file
 	#'
-	print(threshold)
-	# threshold <- - 0.1
-	# print(threshold)
+	
 	# check where the signal exceeds the threshold an convert the resulting vector from logical to numeric values of 0 and 1
 	ts <- (signal > threshold) + 0
 	# look for start/end of continuous sections:

@@ -1,6 +1,7 @@
-readephysdata <- function(files, mc = TRUE) {
+readephysdata <- function(files, folder, mc = TRUE) {
 	#' \code{readephysdata} a function to read ephys log files. 
 	#' @param files a list of file names
+	#' @paran folder character a folder path to read ephys data from
 	#' @param mc enables or disables the use of multiple cores
 	#' @return a data frame with ephys data
 	# todo: add some checks for data validity (maybe filesize)
@@ -19,10 +20,10 @@ readephysdata <- function(files, mc = TRUE) {
 	# create a list and fill it with the data
 	# multi core variant
 	if (mc == TRUE) {
-		datalist <- mclapply(files, read.csv, sep = ",", colClasses = "numeric")
+		datalist <- mclapply(paste(folder, "/", files, sep = ""), read.csv, sep = ",", colClasses = "numeric")
 	}
 	else {
-		datalist <- lapply(files, read.csv, sep = ",", colClasses = "numeric")
+		datalist <- lapply(paste(folder, "/", files, sep = ""), read.csv, sep = ",", colClasses = "numeric")
 	}
 	# organize the data into a data frame
  	datadf <- do.call(cbind, datalist)
