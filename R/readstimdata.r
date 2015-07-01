@@ -8,6 +8,10 @@
 #' @export
 #'
 readstimdata <- function(metalist, stimlibrary = "/home/martin/datarepos/ephysstimlibrary/") {
+	# check if metalist does not contain NA data
+	if (all(is.na(metalist[[1]]))) {
+		stop("Metalist seems to be errorneous, stopping.")
+	}
 	# create an empty list
 	stimlist <- list()
 	# construct paths to filenames from the metadata and store them in a list
