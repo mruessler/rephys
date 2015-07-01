@@ -9,7 +9,7 @@
 #' @return processed spike data
 batch_spikes <- function(rawdata, std_factor = 1, min_isi = 1, sigma = NA) {
 	# get the filenames. filenames becomes a vector of filenames, rawdata becomes a list of all data frames containing the data
-	filenames <- dir()
+	# filenames <- dir()
 	#	do.call(cbind, rawdata)
 	# preallocate the matrix
 	# spikes <- matrix(data = NA, nrow = dim(rawdata[[1]][[1]])[1], ncol = length(filenames))
@@ -20,7 +20,7 @@ batch_spikes <- function(rawdata, std_factor = 1, min_isi = 1, sigma = NA) {
 	s_per_ms <- 25
 
 	# main action loop
-	for (i in 1:length(filenames)) {
+	for (i in 1:ncol(spikes)) {
 		# select the recording column
 		signal <- rawdata[, i]
 		# filter the signal if sigma was specified
@@ -33,11 +33,10 @@ batch_spikes <- function(rawdata, std_factor = 1, min_isi = 1, sigma = NA) {
 
 		thres <- m + s * std_factor
 		# find spikes. send the data matrix in two parts–each vector individually
-		rsp <- threshold_spikes(signal, thres, file = filenames[i])
+		rsp <- threshold_spikes(signal, thres)
 		# spikes[,] <- prune_spikes()
 		# fill the spikes matrix with data
 		spikes[, i] <- rsp
 	}
-	print("fin")
 	return(spikes)
 }

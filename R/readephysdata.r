@@ -41,7 +41,6 @@ readephysdata <- function(files, folder, mc = TRUE) {
 		colnames(datadf) <- 1:ncol(datadf)
 	}
 	# time taken
-	endtime <- timer()
 	timediff <- timer(start.time)
 	writeLines(paste("Reader took ", timediff, " seconds (", length(files), " files),", sep = ""))
 	# return the data in a data frame. the filenames are the column names.
