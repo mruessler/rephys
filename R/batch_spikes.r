@@ -1,14 +1,13 @@
+#' \code{batch_spikes} a first try on copying the functionality of the matlab toolbox batch_spikes.m function
+#' more documentation might come in the future
+#' steps: »unpack« the rawdata into filenames and data. find spikes in the data streams pack the data into one array
+#'
+#' @param rawdata ephys data to work on
+#' @param std_factor depending on the quality of the data. A value of 1 is a good value for data with a really good signal to noise ratio.
+#' @param min_isi minimum spike interval in ms.
+#' @param sigma not yet implemented
+#' @return processed spike data
 batch_spikes <- function(rawdata, std_factor = 1, min_isi = 1, sigma = NA) {
-	#' \code{batch_spikes} a first try on copying the functionality of the matlab toolbox batch_spikes.m function
-	#' more documentation might come in the future
-	#' steps: »unpack« the rawdata into filenames and data. find spikes in the data streams pack the data into one array
-	#'
-	#' @param rawdata ephys data to work on
-	#' @param std_factor depending on the quality of the data. A value of 1 is a good value for data with a really good signal to noise ratio.
-	#' @param min_isi minimum spike interval in ms.
-	#' @param sigma not yet implemented
-	#' @return processed spike data
-
 	# get the filenames. filenames becomes a vector of filenames, rawdata becomes a list of all data frames containing the data
 	filenames <- dir()
 	#	do.call(cbind, rawdata)
