@@ -5,13 +5,33 @@
 #' @return ephys raw data to be further processed
 #' @export
 startanalysis <- function(mc = TRUE) {
-	# temporarily function for testing purposes
-	# select a data dir
-	dd <- "~/datarepos/ephysfull/data"
-	dd <- "~/datarepos/ephys/data"
-	# 	setwd("~/data/h1example")
-	# dd <- "~/wolke/work/ephys/data"
+		# temporarily function for testing purposes
+	# select a data dir, meta dir, stim dir
+	# dd <- "~/datarepos/ephysfull/data"
+	# dd <- "~/datarepos/ephys/data"
+	dd <- "~/wolke/work/ephys/data/"
+	md <- "~/wolke/work/ephys/meta/"
+	sd <- "~/wolke/work/ephys/lib/"
+	pd <- "~/wolke/work/ephys/png/"
 	files <- dir(dd)
+	# get the data
 	data <- readephysdata(files, folder = dd, mc = mc)
-	return(data)
+	print("got the data")
+	# transform data into spike data
+	spikes <- batch_spikes(data)
+	print("data transformed")
+	# read metadata for the data
+	metalist <- readmetadata(datafolder = dd, metafolder = md)
+	print("metadata loaded")
+	stimlist <- readstimdata(metalist = metalist, stimlibrary = sd)
+	print("stimulus data loaded")
+	# plot the spikes and the stimuli
+	for (i in 1:ncol(spikes)) {
+		png(file = paste(pd, "spike", i, ".png", sep = ""), width = 15000)
+		par(mfrow = c(3, 1))
+		plotspike(spikes[, i])
+		plotstimulus(stimlist[[ceiling(i / 2)]])
+		dev.off()
+	}
+	print("finished the run")
 }
