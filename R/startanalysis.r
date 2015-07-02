@@ -8,11 +8,24 @@ startanalysis <- function(mc = TRUE) {
 		# temporarily function for testing purposes
 	# select a data dir, meta dir, stim dir
 	# dd <- "~/datarepos/ephysfull/data"
-	# dd <- "~/datarepos/ephys/data"
-	dd <- "~/wolke/work/ephys/data/"
-	md <- "~/wolke/work/ephys/meta/"
-	sd <- "~/wolke/work/ephys/lib/"
-	pd <- "~/wolke/work/ephys/png/"
+	env <- "data"
+	if (env == "wolke") {
+		dd <- "~/wolke/work/ephys/data/"
+		md <- "~/wolke/work/ephys/meta/"
+		sd <- "~/wolke/work/ephys/lib/"
+		pd <- "~/wolke/work/ephys/png/"
+	}
+	else {
+		dd <- "~/datarepos/ephys/data/"
+		md <- "~/datarepos/ephys/meta/"
+		sd <- "~/datarepos/ephysstimlibrary/"
+		pd <- "~/datarepos/ephys/png/"
+	}
+	if (env == "data") {
+		dd <- "~/datarepos/ephysfull/data/"
+		md <- "~/datarepos/ephysfull/meta/"
+		pd <- "~/datarepos/ephysfull/png/"
+	}
 	files <- dir(dd)
 	# get the data
 	data <- readephysdata(files, folder = dd, mc = mc)
@@ -27,7 +40,7 @@ startanalysis <- function(mc = TRUE) {
 	print("stimulus data loaded")
 	# plot the spikes and the stimuli
 	for (i in 1:ncol(spikes)) {
-		png(file = paste(pd, "spike", i, ".png", sep = ""), width = 15000)
+		png(file = paste(pd, "spike", i, ".png", sep = ""), width = 1500)
 		par(mfrow = c(3, 1))
 		plotspike(spikes[, i])
 		plotstimulus(stimlist[[ceiling(i / 2)]])
