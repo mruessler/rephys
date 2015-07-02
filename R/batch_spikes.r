@@ -30,7 +30,6 @@ batch_spikes <- function(rawdata, std.factor = 1, min_isi = 1, sigma = NA) {
 		# compute threshold value; m and s have the dim(1, 2)
 		m <- mean(signal)
 		s <- sd(signal)
-
 		thres <- m + s * std.factor
 		# find spikes. send the data matrix in two parts–each vector individually
 		rsp <- threshold_spikes(signal, thres)

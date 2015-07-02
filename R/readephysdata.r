@@ -30,7 +30,7 @@ readephysdata <- function(files, folder, mc = TRUE) {
 		print("Dual recording data detected")
 		# adapt the vector of filenames to match the columns
 		# first, double the elements
-		# files <- as.vector(sapply(files, function (x) rep(x,2)))
+		# files <- as.vector(sapply(files, function (x) rep(x, 2)))
 		# todo
 		colnames(datadf) <- paste("c", 1:ncol(datadf), sep = "")
 	}
