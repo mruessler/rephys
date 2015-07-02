@@ -3,11 +3,11 @@
 #' steps: »unpack« the rawdata into filenames and data. find spikes in the data streams pack the data into one array
 #'
 #' @param rawdata ephys data to work on
-#' @param std_factor depending on the quality of the data. A value of 1 is a good value for data with a really good signal to noise ratio.
+#' @param std.factor depending on the quality of the data. A value of 1 is a good value for data with a really good signal to noise ratio.
 #' @param min_isi minimum spike interval in ms.
 #' @param sigma not yet implemented
 #' @return processed spike data
-batch_spikes <- function(rawdata, std_factor = 1, min_isi = 1, sigma = NA) {
+batch_spikes <- function(rawdata, std.factor = 1, min_isi = 1, sigma = NA) {
 	# get the filenames. filenames becomes a vector of filenames, rawdata becomes a list of all data frames containing the data
 	# filenames <- dir()
 	#	do.call(cbind, rawdata)
@@ -17,7 +17,7 @@ batch_spikes <- function(rawdata, std_factor = 1, min_isi = 1, sigma = NA) {
 	spikes <- array(data = NA_real_, dim = dim(rawdata))
 
 	# samples in ms – we take a shortcut here
-	s_per_ms <- 25
+	# s_per_ms <- 25
 
 	# main action loop
 	for (i in 1:ncol(spikes)) {
@@ -31,7 +31,7 @@ batch_spikes <- function(rawdata, std_factor = 1, min_isi = 1, sigma = NA) {
 		m <- mean(signal)
 		s <- sd(signal)
 
-		thres <- m + s * std_factor
+		thres <- m + s * std.factor
 		# find spikes. send the data matrix in two parts–each vector individually
 		rsp <- threshold_spikes(signal, thres)
 		# spikes[,] <- prune_spikes()

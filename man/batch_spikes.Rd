@@ -6,12 +6,12 @@
 more documentation might come in the future
 steps: »unpack« the rawdata into filenames and data. find spikes in the data streams pack the data into one array}
 \usage{
-batch_spikes(rawdata, std_factor = 1, min_isi = 1, sigma = NA)
+batch_spikes(rawdata, std.factor = 1, min_isi = 1, sigma = NA)
 }
 \arguments{
 \item{rawdata}{ephys data to work on}
 
-\item{std_factor}{depending on the quality of the data. A value of 1 is a good value for data with a really good signal to noise ratio.}
+\item{std.factor}{depending on the quality of the data. A value of 1 is a good value for data with a really good signal to noise ratio.}
 
 \item{min_isi}{minimum spike interval in ms.}
 

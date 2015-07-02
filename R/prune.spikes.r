@@ -17,7 +17,7 @@ prune.spikes <- function(spikes, min.isi) {
  		for (j in 1:nrow(spikes)) {
  			if (spikes[j, i] == 1) {
  				if (j - last < min.isi) {
- 					prunedspikes[j, i] <- 0;  #remove the spike
+ 					prunedspikes[j, i] <- 0;  # remove the spike
  				}
  				else {
  					last <- j

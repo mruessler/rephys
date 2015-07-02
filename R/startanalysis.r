@@ -8,7 +8,7 @@ startanalysis <- function(mc = TRUE) {
 		# temporarily function for testing purposes
 	# select a data dir, meta dir, stim dir
 	# dd <- "~/datarepos/ephysfull/data"
-	env <- "data"
+	env <- "wolke"
 	if (env == "wolke") {
 		dd <- "~/wolke/work/ephys/data/"
 		md <- "~/wolke/work/ephys/meta/"
@@ -31,11 +31,12 @@ startanalysis <- function(mc = TRUE) {
 	data <- readephysdata(files, folder = dd, mc = mc)
 	print("got the data")
 	# transform data into spike data
-	spikes <- batch_spikes(data)
+	spikes <- batch_spikes(data, std.factor = 5)
 	print("data transformed")
 	# prune spikes
-	spikes <- prune.spikes(spikes, min.isi = 3)
+	spikes <- prune.spikes(spikes, min.isi = 75)
 	print("spikes pruned")
+	# plot.raster(spikes, 25000)
 	# read metadata for the data
 	metalist <- readmetadata(datafolder = dd, metafolder = md)
 	print("metadata loaded")
