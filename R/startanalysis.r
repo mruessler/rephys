@@ -33,6 +33,9 @@ startanalysis <- function(mc = TRUE) {
 	# transform data into spike data
 	spikes <- batch_spikes(data)
 	print("data transformed")
+	# prune spikes
+	spikes <- prune.spikes(spikes, min.isi = 3)
+	print("spikes pruned")
 	# read metadata for the data
 	metalist <- readmetadata(datafolder = dd, metafolder = md)
 	print("metadata loaded")

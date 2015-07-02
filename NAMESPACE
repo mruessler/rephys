@@ -2,6 +2,7 @@
 
 export(create_png_overview)
 export(plot_quickmatrix)
+export(prune.spikes)
 export(readmetadata)
 export(readstimdata)
 export(startanalysis)
