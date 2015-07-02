@@ -20,6 +20,9 @@ startanalysis <- function(mc = TRUE) {
 	# transform data into spike data
 	spikes <- batch_spikes(data)
 	print("data transformed")
+	# prune spikes
+	spikes <- prune.spikes(spikes, min.isi = 3)
+	print("spikes pruned")
 	# read metadata for the data
 	metalist <- readmetadata(datafolder = dd, metafolder = md)
 	print("metadata loaded")
@@ -27,7 +30,7 @@ startanalysis <- function(mc = TRUE) {
 	print("stimulus data loaded")
 	# plot the spikes and the stimuli
 	for (i in 1:ncol(spikes)) {
-		png(file = paste(pd, "spike", i, ".png", sep = ""), width = 15000)
+		png(file = paste(pd, "spike", i, ".png", sep = ""), width = 1500)
 		par(mfrow = c(3, 1))
 		plotspike(spikes[, i])
 		plotstimulus(stimlist[[ceiling(i / 2)]])
