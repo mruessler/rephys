@@ -19,8 +19,8 @@ plot.png.overview <- function(wd = NA) {
 	print("Start writing png files")
 	for (i in 1:length(files)) {
 		tsdata <- ts(data = data[i], start = 1/25000, end = 10, deltat = 1/25000)
-		png(filename = sub(pattern = ".csv", replacement = ".png", x = paste(wd, "/png/", files, sep = "")[i]))
-		plot(tsdata, xlab = "Time (s)", ylab = "Amplitude", main = files[1])
+		png(width = 960, filename = sub(pattern = ".csv", replacement = ".png", x = paste(wd, "/png/", files, sep = "")[i]))
+		plot(tsdata, xlab = "Time (s)", ylab = "Amplitude", main = files[i])
 		dev.off()
 	}
 }
