@@ -8,6 +8,10 @@
 threshold.spikes <- function(signal, threshold) {
 	# check where the signal exceeds the threshold an convert the resulting vector from logical to numeric values of 0 and 1
 	ts <- (signal > threshold) + 0
+	# check whether ts consists only of zeros
+	if (isTRUE(zero.range(ts))) {
+		writeLines("Threshold is higher than any value from the input vector")
+	}
 	# look for start/end of continuous sections:
 	# diff of a vector of logical values gives:
 	#    1 if v(n - 1) = 0 and v(n) = 1
@@ -18,7 +22,7 @@ threshold.spikes <- function(signal, threshold) {
 
 	# either starts or ends may no have any content. let’s check and stop in that case
 	if (is.na(starts[1] > ends[1])) {
-		print(c("Error, start and end are not comparable. Returning empty vector.", file))
+		writeLines("Error, start and end are not comparable. Returning empty vector.")
 		spikes <- vector("numeric", length(signal))
 		return(spikes)
 	}
