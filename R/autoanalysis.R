@@ -8,7 +8,7 @@ autoanalysis <- function(mc = TRUE) {
 		# temporarily function for testing purposes
 	# select a data dir, meta dir, stim dir
 	# dd <- "~/datarepos/ephysfull/data"
-	env <- "wolke"
+	env <- "data"
 	if (env == "wolke") {
 		dd <- "~/wolke/work/ephys/data/"
 		md <- "~/wolke/work/ephys/meta/"
@@ -31,8 +31,8 @@ autoanalysis <- function(mc = TRUE) {
 	data <- read.ephysdata(files, folder = dd, mc = mc)
 	print("got the data")
 	# transform data into spike data
-	spikes <- batch.spikes(data, std.factor = 5)
-	print("data transformed")
+	spikes <- batch.spikes(data, std.factor = 4)
+	print("data transformed to spike data")
 	# prune spikes
 	spikes <- prune.spikes(spikes, min.isi = 75)
 	print("spikes pruned")
