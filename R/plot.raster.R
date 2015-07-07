@@ -1,5 +1,6 @@
 #' plot.raster
 #'
+#' @description Create a raster plot with all the spike data
 #' @param spikes 
 #' @param sr sampling rate
 #'

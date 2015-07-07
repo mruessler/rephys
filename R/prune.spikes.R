@@ -1,6 +1,6 @@
 #' prune.spikes
 #'
-#' @description a copy of the H1toolbox prune_spikes function. This Function removes spikes that fall within the minimum inter stimulus interval of the previous spike. It is safe to assume that a spike within 3 ms can be filtered out.
+#' @description a copy of the H1toolbox prune_spikes function. This Function removes spikes that fall within the minimum inter stimulus interval of the previous spike. It is safe to assume that a spike within 3 ms can be filtered out.
 #' @param spikes spike matrix to be pruned
 #' @param min.isi minimum inter stimulus interval in milliseconds
 #'

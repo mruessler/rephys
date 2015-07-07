@@ -1,4 +1,4 @@
-#' readstimdata
+#' read.stimdata
 #'
 #' @description match the experiment parameters with a filename in the stimlibrary. the function takes the output of the readmetadata function as an input. from that data it constructs the file paths to the stimulus files. example filename from the library: ephyslog-amp25-avgpos100-freq0.5.log
 #' @param metalist list of metadata data frames
@@ -7,7 +7,7 @@
 #' @return a list with stimulus data frames
 #' @export
 #'
-readstimdata <- function(metalist, stimlibrary = "/home/martin/datarepos/ephysstimlibrary/") {
+read.stimdata <- function(metalist, stimlibrary = "/home/martin/datarepos/ephysstimlibrary/") {
 	# check if metalist does not contain NA data
 	if (all(is.na(metalist[[1]]))) {
 		stop("Metalist seems to be errorneous, stopping.")

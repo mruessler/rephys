@@ -1,7 +1,9 @@
-#' \code{create_png_overview} A function to create png overviews of ephys log files
+#' plot.png.overview
+#' 
+#' \code{plot.png.overview} A function to create png overviews of ephys log files
 #' @param wd working directory where the data is. It is required to use the folder containing the data, meta, and png subfolders as input
 #' @export
-create_png_overview <- function(wd = NA) {
+plot.png.overview <- function(wd = NA) {
 	# check whether a working directory was specified
 	if (is.na(wd) == TRUE) {
 		stop("Error, no directory specified.")
@@ -12,7 +14,7 @@ create_png_overview <- function(wd = NA) {
 	# get the files from folder
 	files <- dir(dd, pattern = ".csv")
 	# get the data from the files
-	data <- readephysdata(files, folder = dd, mc = TRUE)
+	data <- read.ephysdata(files, folder = dd, mc = TRUE)
 	# plot the data from the files 
 	print("Start writing png files")
 	for (i in 1:length(files)) {

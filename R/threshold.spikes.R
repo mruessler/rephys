@@ -1,9 +1,11 @@
-#' \code{threshold_spikes} apply a threshold to the input signal and return a vector of 0 and 1
+#' threshold.spikes
+#' 
+#' \code{threshold.spikes} apply a threshold to the input signal and return a vector of 0 and 1
 #' @param signal numeric vector of ephys data
 #' @param threshold numeric value
 #' @return a matrix with spikes
 #' @export
-threshold_spikes <- function(signal, threshold) {
+threshold.spikes <- function(signal, threshold) {
 	# check where the signal exceeds the threshold an convert the resulting vector from logical to numeric values of 0 and 1
 	ts <- (signal > threshold) + 0
 	# look for start/end of continuous sections:

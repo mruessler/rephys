@@ -1,4 +1,4 @@
-#' readmetadata
+#' read.metadata
 #' 
 #' @description a function to read ephys metadata files. 
 #' 
@@ -6,7 +6,7 @@
 #' @param metafolder where the metadata files are located
 #' @return returns a list with metadata for all files from the data folder
 #' @export
-readmetadata <- function(datafolder, metafolder) {
+read.metadata <- function(datafolder, metafolder) {
 	# check whether the folder contains the folder meta with grepl(ogical)
 # 	if (grepl("/meta", folder) == FALSE) {
 # 		# try to change to the sub-folder meta
@@ -16,13 +16,13 @@ readmetadata <- function(datafolder, metafolder) {
 # 			stop("Error: Wrong directory for readmetadata. Cannot find ›meta‹ folder!")
 # 		}
 # 	}
-	# read in the list of data file names
+	# read in the list of data filenames
 	datanames <- dir(path = datafolder, pattern = ".csv")
-	# read in the list of metadata file names
+	# read in the list of metadata filenames
 	metanames <- dir(path = metafolder, pattern = ".csv")
 	# compare the filelists
 	if (!identical(datanames, metanames)) {
-		stop("There are differences between data and metadata.")
+		stop("There are differences between data and metadata filenames.")
 	}
 	# read in the metadata. metalist will be a list of data frames
 	metalist <- parallel::mclapply(paste(metafolder, metanames, sep = ""), read.csv, header = FALSE, sep = ",")
