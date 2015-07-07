@@ -38,5 +38,6 @@ batch.spikes <- function(rawdata, std.factor = 1, sigma = NA) {
 		# fill the spikes matrix with data
 		spikes[, i] <- rsp
 	}
+	spikes <- data.frame(spikes)
 	return(spikes)
 }
