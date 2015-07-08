@@ -8,9 +8,9 @@ autoanalysis <- function(mc = TRUE) {
 		# temporarily function for testing purposes
 	# select a data dir, meta dir, stim dir
 	# dd <- "~/datarepos/ephysfull/data"
-	env <- "data"
+	env <- "wolke"
 	if (env == "wolke") {
-		dd <- "~/wolke/work/ephys/data/"
+		dd <- "~/wolke/work/ephys/data"
 		md <- "~/wolke/work/ephys/meta/"
 		sd <- "~/wolke/work/ephys/lib/"
 		pd <- "~/wolke/work/ephys/png/"
@@ -43,11 +43,13 @@ autoanalysis <- function(mc = TRUE) {
 	stimlist <- read.stimdata(metalist = metalist, stimlibrary = sd)
 	print("stimulus data loaded")
 	# plot the spikes and the stimuli
-	for (i in 1:ncol(spikes)) {
-		png(file = paste(pd, "spike", i, ".png", sep = ""), width = 1500)
-		par(mfrow = c(3, 1))
-		plot.spikes(spikes[, i])
-		plot.stimulus(stimlist[[ceiling(i / 2)]])
+	for (i in 1:length(files)) {
+		png(width = 1500, filename = sub(pattern = ".csv", replacement = ".png", x = paste0(pd, files)[i]))
+		par(mfrow = c(4, 1), bty = "n")
+		tsspikes <- ts(data = spikes[((i * 2) - 1):(i * 2)], start = 1/25000, end = 10, deltat = 1/25000)
+		plot.spikes(tsspikes[, 1], xlab = "", ylab = "Left channel", xaxt = "n", main = files[i])
+		plot.spikes(tsspikes[, 2], xlab = "", ylab = "Right channel")
+		plot.stimulus(stimlist[[i]])
 		dev.off()
 	}
 	print("finished the run")
