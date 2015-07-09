@@ -6,7 +6,7 @@
 #' @export
 plot.quickmatrix <- function(matrix, filename = "spike") {
 	for (i in 1:ncol(matrix)) {
-		png(filename = paste(filename, i, ".png", sep = ""))
+		png(filename = paste0(filename, i, ".png"))
 		if (any(!is.na(matrix[, i]))) {
 			plot(matrix[, i], type = "l")
 		}

@@ -10,7 +10,7 @@ read.metadata <- function(datafolder, metafolder) {
 	# check whether the folder contains the folder meta with grepl(ogical)
 # 	if (grepl("/meta", folder) == FALSE) {
 # 		# try to change to the sub-folder meta
-# 		result <- try(setwd(paste(wd, "/meta", sep = "")), silent = TRUE)
+# 		result <- try(setwd(paste0(wd, "/meta")), silent = TRUE)
 # 		# if it did not work stop and throw an error
 # 		if (inherits(result, "try-error") == TRUE) {
 # 			stop("Error: Wrong directory for readmetadata. Cannot find ›meta‹ folder!")
@@ -25,7 +25,7 @@ read.metadata <- function(datafolder, metafolder) {
 		stop("There are differences between data and metadata filenames.")
 	}
 	# read in the metadata. metalist will be a list of data frames
-	metalist <- parallel::mclapply(paste(metafolder, metanames, sep = ""), read.csv, header = FALSE, sep = ",")
+	metalist <- parallel::mclapply(paste0(metafolder, metanames), read.csv, header = FALSE, sep = ",")
 	# clean up the data—remove columns that only contain NA values if present
 	metalist <- parallel::mclapply(metalist, Filter, f = function(x) {!all(is.na(x))})
 	# change the column names of the data frames

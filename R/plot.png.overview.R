@@ -9,7 +9,7 @@ plot.png.overview <- function(wd = NA) {
 		stop("Error, no directory specified.")
 	}
 	else {
-		dd <- paste(wd, "/data", sep = "")
+		dd <- paste0(wd, "/data")
 	}
 	# get the files from folder
 	files <- dir(dd, pattern = ".csv")

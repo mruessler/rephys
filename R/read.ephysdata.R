@@ -19,10 +19,10 @@ read.ephysdata <- function(files, folder, mc = TRUE) {
 	# create a list and fill it with the data
 	# multi core variant
 	if (mc == TRUE) {
-		datalist <- parallel::mclapply(paste(folder, "/", files, sep = ""), read.csv, sep = ",", colClasses = "numeric")
+		datalist <- parallel::mclapply(paste0(folder, "/", files), read.csv, sep = ",", colClasses = "numeric")
 	}
 	else {
-		datalist <- lapply(paste(folder, "/", files, sep = ""), read.csv, sep = ",", colClasses = "numeric")
+		datalist <- lapply(paste0(folder, "/", files), read.csv, sep = ",", colClasses = "numeric")
 	}
 	# organize the data into a data frame
  	datadf <- do.call(cbind, datalist)
@@ -32,7 +32,7 @@ read.ephysdata <- function(files, folder, mc = TRUE) {
 		# first, double the elements
 		# files <- as.vector(sapply(files, function (x) rep(x, 2)))
 		# todo
-		colnames(datadf) <- paste("c", 1:ncol(datadf), sep = "")
+		colnames(datadf) <- paste0("c", 1:ncol(datadf))
 	}
 	else {
 		# use filenames as column names
@@ -42,7 +42,7 @@ read.ephysdata <- function(files, folder, mc = TRUE) {
 	}
 	# time taken
 	timediff <- timer(start.time)
-	writeLines(paste("Reader took ", timediff, " seconds (", length(files), " files),", sep = ""))
+	writeLines(paste0("Reader took ", timediff, " seconds (", length(files), " files),"))
 	# return the data in a data frame. the filenames are the column names.
 	return(datadf)
 }

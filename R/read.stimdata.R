@@ -16,7 +16,7 @@ read.stimdata <- function(metalist, stimlibrary = "/home/martin/datarepos/ephyss
 	stimlist <- list()
 	# construct paths to filenames from the metadata and store them in a list
 	for (i in 1:length(metalist)) {
-		stimlist[[i]] <- paste(stimlibrary, "ephyslog-amp", metalist[[i]][2, 2], "-avgpos", metalist[[i]][3, 2], "-freq", metalist[[i]][4, 2], ".log", sep = "")
+		stimlist[[i]] <- paste0(stimlibrary, "ephyslog-amp", metalist[[i]][2, 2], "-avgpos", metalist[[i]][3, 2], "-freq", metalist[[i]][4, 2], ".log")
 	}
 	# transform the list into a vector
 	stimvector <- as.vector(unlist(stimlist))
