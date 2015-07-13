@@ -26,7 +26,7 @@ autoanalysis <- function(mc = TRUE) {
 		md <- "~/datarepos/ephysfull/meta/"
 		pd <- "~/datarepos/ephysfull/png/"
 	}
-	files <- dir(dd)
+	files <- dir(dd, pattern = ".csv")
 	# get the data
 	data <- read.ephysdata(files, folder = dd, mc = mc)
 	writeLines("Data loaded.")
