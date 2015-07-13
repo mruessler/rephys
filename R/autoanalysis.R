@@ -2,7 +2,7 @@
 #'
 #' @description This is the starting point of the analysis. The function will analyse ephys data with default parameters. The returned object contains all the data from the data directory. This object can then be handed over to the batch_spikes function for further analysis.
 #' @param mc logical enables or disables the use of multiple cores
-#' @return ephys raw data to be further processed
+#' @return spikes processed spike data
 #' @export
 autoanalysis <- function(mc = TRUE) {
 		# temporarily function for testing purposes
@@ -53,4 +53,5 @@ autoanalysis <- function(mc = TRUE) {
 		dev.off()
 	}
 	writeLines("Finished autoprocessing.")
+	return(spikes)
 }

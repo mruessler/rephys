@@ -10,7 +10,7 @@ autoanalysis(mc = TRUE)
 \item{mc}{logical enables or disables the use of multiple cores}
 }
 \value{
-ephys raw data to be further processed
+spikes processed spike data
 }
 \description{
 This is the starting point of the analysis. The function will analyse ephys data with default parameters. The returned object contains all the data from the data directory. This object can then be handed over to the batch_spikes function for further analysis.
