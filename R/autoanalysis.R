@@ -8,7 +8,7 @@ autoanalysis <- function(mc = TRUE) {
 		# temporarily function for testing purposes
 	# select a data dir, meta dir, stim dir
 	# dd <- "~/datarepos/ephysfull/data"
-	env <- "wolke"
+	env <- "data"
 	if (env == "wolke") {
 		dd <- "~/wolke/work/ephys/data"
 		md <- "~/wolke/work/ephys/meta/"
@@ -29,19 +29,19 @@ autoanalysis <- function(mc = TRUE) {
 	files <- dir(dd)
 	# get the data
 	data <- read.ephysdata(files, folder = dd, mc = mc)
-	print("got the data")
+	writeLines("Data loaded.")
 	# transform data into spike data
 	spikes <- batch.spikes(data, std.factor = 4)
-	print("data transformed to spike data")
+	writeLines("Data transformed to spike data.")
 	# prune spikes
 	spikes <- prune.spikes(spikes, min.isi = 75)
-	print("spikes pruned")
+	writeLines("Spikes pruned.")
 	# plot.raster(spikes, 25000)
 	# read metadata for the data
 	metalist <- read.metadata(datafolder = dd, metafolder = md)
-	print("metadata loaded")
+	writeLines("Metadata loaded.")
 	stimlist <- read.stimdata(metalist = metalist, stimlibrary = sd)
-	print("stimulus data loaded")
+	writeLines("Stimulus data loaded.")
 	# plot the spikes and the stimuli
 	for (i in 1:length(files)) {
 		png(width = 1500, filename = sub(pattern = ".csv", replacement = ".png", x = paste0(pd, files)[i]))
@@ -52,5 +52,5 @@ autoanalysis <- function(mc = TRUE) {
 		plot.stimulus(stimlist[[i]])
 		dev.off()
 	}
-	print("finished the run")
+	writeLines("Finished autoprocessing.")
 }
