@@ -1,5 +1,5 @@
 #' plot.png.overview
-#' 
+#'
 #' \code{plot.png.overview} A function to create png overviews of ephys log files
 #' @param wd working directory where the data is. It is required to use the folder containing the data, meta, and png subfolders as input
 #' @param maxchunk numeric add a maximum number of files to be processed at once
@@ -13,15 +13,20 @@ plot.png.overview <- function(wd = NA, maxchunk = 100) {
 		dd <- paste0(wd, "/data")
 	}
 	# get the files from folder
-	files <- dir(dd, pattern = ".csv")
+	storage <- dir(dd, pattern = ".csv")
+	writeLines(paste(length(storage), "files to process."))
 	# only do chunks of maxchunk at maximum (due to memory limitations)
-	storage <- files
 	while (length(storage) > 0) {
-		files <- storage[1:maxchunk]
+		if (length(storage) >= maxchunk) {
+			files <- storage[1:maxchunk]
+		}
+		else {
+			files <- storage
+		}
 		# get the data from the files
 		data <- read.ephysdata(files, folder = dd, mc = TRUE)
-		# plot the data from the files 
-		writeLines("Start writing png files")
+		# plot the data from the files
+		writeLines("Start writing png files.")
 		for (i in 1:length(files)) {
 			# dual recordings
 			if (ncol(data) == 2 * length(files)) {
@@ -40,6 +45,7 @@ plot.png.overview <- function(wd = NA, maxchunk = 100) {
 				dev.off()
 			}
 		}
+		writeLines("Finished writing png files.")
 		storage <- storage[-(1:maxchunk)]
 		# remove NA from storage if introduced
 		storage <- storage[!is.na(storage)]
