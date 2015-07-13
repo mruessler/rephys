@@ -27,7 +27,7 @@ read.metadata <- function(files, datafolder, metafolder) {
 	}
 	else {
 		writeLines("These data files do not have metadata:")
-		writeLines(metafiles[file.exists(metafiles) == FALSE])
+		writeLines(files[file.exists(metafiles) == FALSE])
 		return(NULL)
 	}
 	# clean up the data—remove columns that only contain NA values if present
