@@ -20,6 +20,11 @@ read.stimdata <- function(metalist, stimlibrary = "/home/martin/datarepos/ephyss
 	}
 	# transform the list into a vector
 	stimvector <- as.vector(unlist(stimlist))
+	# check whether all stimulus files exist
+	if (!all(file.exists(stimvector))) {
+		warning(paste0("The stimulus library does not contain these files:", "\n", stimvector[file.exists(stimvector) == FALSE]))
+		return(NULL)
+	}
 	# load the stimulus data
 	stimlist <- parallel::mclapply(stimvector, read.csv, sep = " ", header = FALSE, colClasses = "numeric")
 	# remove empty columns

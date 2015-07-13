@@ -40,10 +40,13 @@ autoanalysis <- function(mc = TRUE) {
 	# read metadata for the data
 	metalist <- read.metadata(files = files, datafolder = dd, metafolder = md)
 	if (is.null(metalist)) {
-		return("Something went wrong during the computation.")
+		return("Something went wrong during metadata retrieval.")
 	}
 	writeLines("Metadata loaded.")
 	stimlist <- read.stimdata(metalist = metalist, stimlibrary = sd)
+	if (is.null(stimlist)) {
+		return("Something went wrong during stimulus data retrieval.")
+	}
 	writeLines("Stimulus data loaded.")
 	# plot the spikes and the stimuli
 	for (i in 1:length(files)) {
