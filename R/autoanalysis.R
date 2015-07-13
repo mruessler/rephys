@@ -55,7 +55,7 @@ autoanalysis <- function(mc = TRUE) {
 	writeLines("Stimulus data loaded.")
 	# plot the spikes and the stimuli
 	for (i in 1:length(files)) {
-		png(width = 1500, filename = sub(pattern = ".csv", replacement = ".png", x = paste0(pd, files)[i]))
+		png(width = 1500, filename = sub(pattern = ".csv", replacement = "--spikes.png", x = paste0(pd, files)[i]))
 		par(mfrow = c(4, 1), bty = "n")
 		tsspikes <- ts(data = spikes[((i * 2) - 1):(i * 2)], start = 1/25000, end = 10, deltat = 1/25000)
 		plot.spikes(tsspikes[, 1], xlab = "", ylab = "Left channel", xaxt = "n", main = files[i])

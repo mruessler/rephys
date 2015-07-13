@@ -31,7 +31,7 @@ plot.png.overview <- function(wd = NA, maxchunk = 100) {
 			# dual recordings
 			if (ncol(data) == 2 * length(files)) {
 				tsdata <- ts(data = data[((i * 2) - 1):(i * 2)], start = 1/25000, end = 10, deltat = 1/25000)
-				png(width = 960, filename = sub(pattern = ".csv", replacement = ".png", x = paste0(wd, "/png/", files)[i]))
+				png(width = 960, filename = sub(pattern = ".csv", replacement = "--raw.png", x = paste0(wd, "/png/", files)[i]))
 				par(mfrow = c(2, 1), bty = "n")
 				plot(tsdata[, 1], xlab = "", ylab = "Amplitude", xaxt = "n", main = files[i])
 				plot(tsdata[, 2], xlab = "Time (s)", ylab = "Amplitude")
