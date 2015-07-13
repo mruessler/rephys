@@ -4,9 +4,11 @@
 \alias{read.metadata}
 \title{read.metadata}
 \usage{
-read.metadata(datafolder, metafolder)
+read.metadata(files, datafolder, metafolder)
 }
 \arguments{
+\item{files}{the files metadata should be loaded for}
+
 \item{datafolder}{where the data files are located}
 
 \item{metafolder}{where the metadata files are located}

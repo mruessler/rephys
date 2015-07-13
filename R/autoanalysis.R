@@ -38,7 +38,10 @@ autoanalysis <- function(mc = TRUE) {
 	writeLines("Spikes pruned.")
 	# plot.raster(spikes, 25000)
 	# read metadata for the data
-	metalist <- read.metadata(datafolder = dd, metafolder = md)
+	metalist <- read.metadata(files = files, datafolder = dd, metafolder = md)
+	if (is.null(metalist)) {
+		return("Something went wrong during the computation.")
+	}
 	writeLines("Metadata loaded.")
 	stimlist <- read.stimdata(metalist = metalist, stimlibrary = sd)
 	writeLines("Stimulus data loaded.")
