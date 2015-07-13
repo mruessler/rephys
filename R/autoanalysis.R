@@ -27,6 +27,11 @@ autoanalysis <- function(mc = TRUE) {
 		pd <- "~/datarepos/ephysfull/png/"
 	}
 	files <- dir(dd, pattern = ".csv")
+	# reduce the amount of files for development
+	dev <- FALSE
+	if (dev == TRUE) {
+		files <- files[(length(files) - 1):length(files)]
+	}
 	# get the data
 	data <- read.ephysdata(files, folder = dd, mc = mc)
 	writeLines("Data loaded.")
