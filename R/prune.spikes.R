@@ -24,7 +24,40 @@ prune.spikes <- function(spikes, min.isi) {
  				}
  			}
  		}
-		
 	}
 	return(prunedspikes)
 }
+
+prune.cols <- function(spikes, min.isi) {
+	prunedspikes <- apply(spikes, 2, FUN = prune.rows, min.isi = min.isi)
+	return(prunedspikes)
+}
+
+prune.rows <- function(spikes, min.isi) {
+	prunedspikes <- spikes
+	last <- -Inf
+	for (i in 1:length(spikes)) {
+		if (spikes[i] == 1) {
+			if (i - last < min.isi) {
+				prunedspikes[i] <- 0;  # remove the spike
+			}
+			else {
+				last <- i
+			}
+		}
+	}
+	return(prunedspikes)
+}
+
+# try from SE
+# prune.rows <- function(spikes, min.isi) {       
+# 	one_idx_vec <- which(spikes == 1)
+# 	if (length(one_idx_vec) < 2) {
+# 		return(spikes)
+# 	}
+# 	dist <- one_idx_vec[-1] - head(one_idx_vec, -1)
+# 	less_than_min <- (dist < min.isi)
+# 	spikes[one_idx_vec[c(F,less_than_min)]] <- 0
+# 	
+# 	return(spikes)
+# }
