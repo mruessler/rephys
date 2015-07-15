@@ -49,6 +49,8 @@ plot.png.overview <- function(wd = NA, maxchunk = 100) {
 		storage <- storage[-(1:maxchunk)]
 		# remove NA from storage if introduced
 		storage <- storage[!is.na(storage)]
-		writeLines(paste0(length(storage), " files left."))
+		if (length(storage) > 0) {
+			writeLines(paste0(length(storage), " files left."))
+		}
 	}
 }
