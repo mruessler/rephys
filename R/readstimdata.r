@@ -1,10 +1,11 @@
 readstimdata <- function(metalist, stimlibrary = "/home/martin/datarepos/ephysstimlibrary/") {
 	#' @name readstimdata
 	#'
-	#' @description match the experiment parameters with a filename in the stimlibrary. example filename from the library: ephyslog-amp25-avgpos100-freq0.5.log
+	#' @description match the experiment parameters with a filename in the stimlibrary. the function takes the output of the readmetadata function as an input. from that data it constructs the file paths to the stimulus files. example filename from the library: ephyslog-amp25-avgpos100-freq0.5.log
 	#' @param metalist list of metadata data frames
 	#' @param stimlibrary character folder where the stim library is
-	#' @return stimulus data
+	#' @seealso readmetadata
+	#' @return a list with stimulus data frames
 	#' @export
 	#'
 	#' @examples
@@ -18,11 +19,11 @@ readstimdata <- function(metalist, stimlibrary = "/home/martin/datarepos/ephysst
 	# transform the list into a vector
 	stimvector <- as.vector(unlist(stimlist))
 	# load the stimulus data
-	datalist <- mclapply(stimvector, read.csv, sep = " ", header = FALSE, colClasses = "numeric")
+	stimlist <- mclapply(stimvector, read.csv, sep = " ", header = FALSE, colClasses = "numeric")
 	# remove empty columns
-	datalist <- mclapply(datalist, Filter, f = function(x) {!all(is.na(x))})
+	stimlist <- mclapply(stimlist, Filter, f = function(x) {!all(is.na(x))})
 	# add column names to the stimulus data
-	datalist <- mclapply(datalist, function(x) {colnames(x) <- c("time", "unixtime", "leftbar", "rightbar"); x})
+	stimlist <- mclapply(stimlist, function(x) {colnames(x) <- c("time", "unixtime", "leftbar", "rightbar"); x})
 	# return the data
-	return(datalist)
+	return(stimlist)
 }
