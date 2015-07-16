@@ -14,8 +14,7 @@ read.ephysdata <- function(files, folder, mc = TRUE) {
 #   	print(files[1])
 #   	stop("Error: Wrong vector of files given to readephysdata (no ›.csv‹ extension)!")
 #   }
-	# start the timer
-	start.time <- timer()
+
 	# create a list and fill it with the data
 	# multi core variant
 	if (mc == TRUE) {
@@ -40,9 +39,7 @@ read.ephysdata <- function(files, folder, mc = TRUE) {
 		# colnames(datadf) <- files
 		colnames(datadf) <- 1:ncol(datadf)
 	}
-	# time taken
-	timediff <- timer(start.time)
-	writeLines(paste0("Reader took ", timediff, " seconds (", length(files), " files)."))
+	writeLines(paste0(length(files), " files loaded."))
 	# return the data in a data frame. the filenames are the column names.
 	return(datadf)
 }

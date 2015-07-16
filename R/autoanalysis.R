@@ -33,26 +33,36 @@ autoanalysis <- function(mc = TRUE) {
 		files <- files[(length(files) - 1):length(files)]
 	}
 	# get the data
+	start.time <- timer()
 	data <- read.ephysdata(files, folder = dd, mc = mc)
-	writeLines("Data loaded.")
+	time.diff <- timer(start.time)
+	writeLines(paste0("Data loaded (", time.diff, " seconds)."))
 	# transform data into spike data
+	start.time <- timer()
 	spikes <- batch.spikes(data, std.factor = 4)
-	writeLines("Data transformed to spike data.")
+	time.diff <- timer(start.time)
+	writeLines(paste0("Data transformed to spike data (", time.diff, " seconds)."))
 	# prune spikes
+	start.time <- timer()
 	spikes <- prune.spikes(spikes, min.isi = 75)
-	writeLines("Spikes pruned.")
+	time.diff <- timer(start.time)
+	writeLines(paste0("Spikes pruned (", time.diff, " seconds)."))
 	# plot.raster(spikes, 25000)
 	# read metadata for the data
+	start.time <- timer()
 	metalist <- read.metadata(files = files, datafolder = dd, metafolder = md)
+	time.diff <- timer(start.time)
 	if (is.null(metalist)) {
 		return("Something went wrong during metadata retrieval.")
 	}
-	writeLines("Metadata loaded.")
+	writeLines(paste0("Metadata loaded (", time.diff, " seconds)."))
+	start.time <- timer()
 	stimlist <- read.stimdata(metalist = metalist, stimlibrary = sd)
+	time.diff <- timer(start.time)
 	if (is.null(stimlist)) {
 		return("Something went wrong during stimulus data retrieval.")
 	}
-	writeLines("Stimulus data loaded.")
+	writeLines(paste0("Stimulus data loaded (", time.diff, " seconds)."))
 	# plot the spikes and the stimuli
 	for (i in 1:length(files)) {
 		png(width = 1500, filename = sub(pattern = ".csv", replacement = "--spikes.png", x = paste0(pd, files)[i]))
