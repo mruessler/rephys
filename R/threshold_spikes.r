@@ -8,6 +8,10 @@ threshold_spikes <- function(signal, threshold, file) {
 	# check where the signal exceeds the threshold an convert the resulting vector to numeric values of 0 and 1
 	ts <- (signal > threshold) + 0
 	
+	# find start and end points of sections
+	#    1 - if v(n - 1) = 0 and v(n) = 1
+	#    0 - if v(n - 1) == v(n)
+	#   -1 - if v(n - 1) = 1 and v(n) = 0
 	starts <- which(diff(ts) > 0) + 1
 	ends <- which(diff(ts) < 0) + 1
 	
