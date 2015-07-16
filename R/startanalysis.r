@@ -4,15 +4,15 @@ startanalysis <- function(mc = TRUE) {
 	#' @return ephys raw data to be further processed
 
 	wd <- getwd()
-	source('~/src/workgroup/rtreadmillcode/timer.r')
-	source('~/src/workgroup/rephys/R/get_H1signal.r')
+	# load all the scripts
+	scripts <- paste("R/", dir("R"), sep = "")
+	sapply(scripts, source, .GlobalEnv)
 	# temporarily function for testing purposes
-	setwd("~/datarepos/ephys/data")
+	# setwd("~/datarepos/ephys/data")
 	# 	setwd("~/data/h1example")
 	#  	setwd("~/data/h1artificial")
-	# 	setwd("~/wolke/work/ephysdata/")
+	setwd("~/wolke/work/ephys/data")
 	files <- dir()
-	files <- files[1:3]
 	data <- readephysdata(files, mc)
 	# 	setwd(wd)
 	return(data)
