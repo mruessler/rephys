@@ -28,7 +28,7 @@ autoanalysis <- function(mc = TRUE) {
 	}
 	files <- dir(dd, pattern = ".csv")
 	# reduce the amount of files for development
-	dev <- FALSE
+	dev <- TRUE
 	if (dev == TRUE) {
 		files <- files[(length(files) - 1):length(files)]
 	}
@@ -63,16 +63,25 @@ autoanalysis <- function(mc = TRUE) {
 		return("Something went wrong during stimulus data retrieval.")
 	}
 	writeLines(paste0("Stimulus data loaded (", time.diff, " seconds)."))
+	# start plotting
+	plot.data(spikes, stimlist, files, pd)
+	writeLines("Finished autoprocessing.")
+	return(spikes)
+}
+
+plot.data <- function(spikes, stimlist, files, pd) {
 	# plot the spikes and the stimuli
+	start.time <- timer()
 	for (i in 1:length(files)) {
 		png(width = 1500, filename = sub(pattern = ".csv", replacement = "--spikes.png", x = paste0(pd, files)[i]))
-		par(mfrow = c(4, 1), bty = "n")
+		par(mfrow = c(4, 1), bty = "n", cex = 1)
 		tsspikes <- ts(data = spikes[((i * 2) - 1):(i * 2)], start = 1/25000, end = 10, deltat = 1/25000)
+		print(head(tsspikes))
 		plot.spikes(tsspikes[, 1], xlab = "", ylab = "Left channel", xaxt = "n", main = files[i])
 		plot.spikes(tsspikes[, 2], xlab = "", ylab = "Right channel")
 		plot.stimulus(stimlist[[i]])
 		dev.off()
 	}
-	writeLines("Finished autoprocessing.")
-	return(spikes)
+	time.diff <- timer(start.time)
+	writeLines(paste0("Plotting completed (", time.diff, " seconds)."))
 }
