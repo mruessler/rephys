@@ -44,7 +44,7 @@ autoanalysis <- function(mc = TRUE) {
 	writeLines(paste0("Data transformed to spike data (", time.diff, " seconds)."))
 	# prune spikes
 	start.time <- timer()
-	spikes <- prune.spikes(spikes, min.isi = 75)
+	spikes <- prunespikes(as.matrix(spikes), minisi = 75)
 	time.diff <- timer(start.time)
 	writeLines(paste0("Spikes pruned (", time.diff, " seconds)."))
 	# plot.raster(spikes, 25000)
