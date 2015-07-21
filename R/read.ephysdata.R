@@ -1,13 +1,13 @@
 #' read.ephysdata
-#' 
-#' @description a function to read ephys log files. 
+#'
+#' @description a function to read ephys log files.
 #' @param files a list of filenames
 #' @param folder character a folder path to read ephys data from
 #' @param mc enables or disables the use of multiple cores
 #' @return a data frame with ephys data
 read.ephysdata <- function(files, folder, mc = TRUE) {
 	# todo: add some checks for data validity (maybe filesize)
-	
+
 	# check whether the files vector does not contain "csv" and stop, if so
 #   if (!(".csv" %in% files)) {
 #   	print(getwd())
@@ -18,10 +18,10 @@ read.ephysdata <- function(files, folder, mc = TRUE) {
 	# create a list and fill it with the data
 	# multi core variant
 	if (mc == TRUE) {
-		datalist <- parallel::mclapply(paste0(folder, "/", files), read.csv, sep = ",", colClasses = "numeric")
+		datalist <- parallel::mclapply(paste0(folder, "/", files), readr::read_csv, col_names = FALSE, col_types = "dd")
 	}
 	else {
-		datalist <- lapply(paste0(folder, "/", files), read.csv, sep = ",", colClasses = "numeric")
+		datalist <- lapply(paste0(folder, "/", files), readr::read_csv, col_names = FALSE, col_types = "d")
 	}
 	# organize the data into a data frame
  	datadf <- do.call(cbind, datalist)

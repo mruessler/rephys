@@ -26,9 +26,7 @@ read.stimdata <- function(metalist, stimlibrary = "/home/martin/datarepos/ephyss
 		return(NULL)
 	}
 	# load the stimulus data
-	stimlist <- parallel::mclapply(stimvector, read.csv, sep = " ", header = FALSE, colClasses = "numeric")
-	# remove empty columns
-	stimlist <- parallel::mclapply(stimlist, Filter, f = function(x) {!all(is.na(x))})
+	stimlist <- lapply(stimvector, readr::read_delim, delim = " ", col_names = FALSE, col_types = "c_c_c_c_")
 	# add column names to the stimulus data
 	stimlist <- parallel::mclapply(stimlist, function(x) {colnames(x) <- c("time", "unixtime", "leftbar", "rightbar"); x})
 	# return the data
