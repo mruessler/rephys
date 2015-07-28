@@ -47,7 +47,6 @@ autoanalysis <- function(mc = TRUE) {
 	spikes <- prunespikes(as.matrix(spikes), minisi = 75)
 	time.diff <- timer(start.time)
 	writeLines(paste0("Spikes pruned (", time.diff, " seconds)."))
-	# plot.raster(spikes, 25000)
 	# read metadata for the data
 	start.time <- timer()
 	metalist <- read.metadata(files = files, datafolder = dd, metafolder = md)
@@ -68,20 +67,4 @@ autoanalysis <- function(mc = TRUE) {
 	writeLines("Finished autoprocessing.")
 	return(spikes)
 }
-
-plot.data <- function(spikes, stimlist, files, pd) {
-	# plot the spikes and the stimuli
-	start.time <- timer()
-	for (i in 1:length(files)) {
-		png(width = 1500, filename = sub(pattern = ".csv", replacement = "--spikes.png", x = paste0(pd, files)[i]))
-		par(mfrow = c(4, 1), bty = "n", cex = 1)
-		tsspikes <- ts(data = spikes[((i * 2) - 1):(i * 2)], start = 1/25000, end = 10, deltat = 1/25000)
-		print(head(tsspikes))
-		plot.spikes(tsspikes[, 1], xlab = "", ylab = "Left channel", xaxt = "n", main = files[i])
-		plot.spikes(tsspikes[, 2], xlab = "", ylab = "Right channel")
-		plot.stimulus(stimlist[[i]])
-		dev.off()
-	}
-	time.diff <- timer(start.time)
-	writeLines(paste0("Plotting completed (", time.diff, " seconds)."))
 }
