@@ -4,10 +4,9 @@
 #' @param binwidth
 #' @param samplerate
 #'
-#' @return
+#' @return nothing yet
 #' @export
 #'
-#' @examples
 plot.isipsth <- function(spikes, binwidth, samplerate) {
 
 }

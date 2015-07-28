@@ -8,7 +8,7 @@ autoanalysis <- function(mc = TRUE) {
 		# temporarily function for testing purposes
 	# select a data dir, meta dir, stim dir
 	# dd <- "~/datarepos/ephysfull/data"
-	env <- "data"
+	env <- "wolke"
 	if (env == "wolke") {
 		dd <- "~/wolke/work/ephys/data"
 		md <- "~/wolke/work/ephys/meta/"
@@ -63,8 +63,7 @@ autoanalysis <- function(mc = TRUE) {
 	}
 	writeLines(paste0("Stimulus data loaded (", time.diff, " seconds)."))
 	# start plotting
-	plot.data(spikes, stimlist, files, pd)
+	plot.data(spikes = spikes, filelist = files, stimlist = stimlist, outputdir = pd)
 	writeLines("Finished autoprocessing.")
 	return(spikes)
-}
 }
