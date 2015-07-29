@@ -63,7 +63,10 @@ autoanalysis <- function(mc = TRUE) {
 	}
 	writeLines(paste0("Stimulus data loaded (", time.diff, " seconds)."))
 	# start plotting
+	start.time <- timer()
 	plot.data(spikes = spikes, filelist = files, stimlist = stimlist, outputdir = pd)
+	time.diff <- timer(start.time)
+	writeLines(paste0("Spike data plotted (", time.diff, " seconds)."))
 	writeLines("Finished autoprocessing.")
 	return(spikes)
 }
