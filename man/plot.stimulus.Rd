@@ -4,10 +4,12 @@
 \alias{plot.stimulus}
 \title{plot.stimulus}
 \usage{
-\method{plot}{stimulus}(stimdf)
+\method{plot}{stimulus}(stimdf, side = "left")
 }
 \arguments{
 \item{stimdf}{a data frame containing stimulus data}
+
+\item{side}{select the side of which the stimulus is from}
 }
 \description{
 add stimuli to a plot. the stimuli data contain information about the position of the stimuli
