@@ -1,5 +1,5 @@
 #' batch.spikes
-#' 
+#'
 #' \code{batch.spikes} a first try on copying the functionality of the matlab toolbox batch_spikes.m function
 #' more documentation might come in the future
 #' steps: »unpack« the rawdata into filenames and data. find spikes in the data streams pack the data into one array
@@ -9,13 +9,8 @@
 #' @param sigma not yet implemented
 #' @return processed spike data
 batch.spikes <- function(rawdata, std.factor = 1, sigma = NA) {
-	# get the filenames. filenames becomes a vector of filenames, rawdata becomes a list of all data frames containing the data
-	# filenames <- dir()
-	#	do.call(cbind, rawdata)
-	# preallocate the matrix
-	# spikes <- matrix(data = NA, nrow = dim(rawdata[[1]][[1]])[1], ncol = length(filenames))
-	# preallocate an array. each file is in one column, data values are in rows, and channels are in layers (z axis)
-	spikes <- array(data = NA_real_, dim = dim(rawdata))
+	# preallocate a data frame; each recorded channel is in one column, data values are in rows
+	spikes <- matrix(data = NA_real_, nrow = nrow(rawdata), ncol = ncol(rawdata))
 
 	# samples in ms – we take a shortcut here
 	# s_per_ms <- 25

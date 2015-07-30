@@ -25,20 +25,7 @@ read.ephysdata <- function(files, folder, mc = TRUE) {
 	}
 	# organize the data into a data frame
  	datadf <- do.call(cbind, datalist)
-	if (ncol(datadf) == length(files) * 2) {
-		writeLines("Dual recording data detected.")
-		# adapt the vector of filenames to match the columns
-		# first, double the elements
-		# files <- as.vector(sapply(files, function (x) rep(x, 2)))
-		# todo
-		colnames(datadf) <- paste0("c", 1:ncol(datadf))
-	}
-	else {
-		# use filenames as column names
-		writeLines("Single recording data detected.")
-		# colnames(datadf) <- files
-		colnames(datadf) <- 1:ncol(datadf)
-	}
+ 	# print information
 	writeLines(paste0(length(files), " files loaded."))
 	# return the data in a data frame. the filenames are the column names.
 	return(datadf)

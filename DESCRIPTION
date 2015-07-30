@@ -7,7 +7,7 @@ Author: Martin Rüßler
 Maintainer: Martin Rüßler <martin.ruessler@uni-bielefeld.de>
 Description: This is a collection of functions to help analyse electrophysiological data.
 License: GPL-3
-Depends: R (>= 3.1.0), parallel, plyr, signal
+Depends: R (>= 3.1.0), ggplot2, grid, parallel, plyr, signal
 Imports: parallel, Rcpp (>= 0.11.6), signal
 LinkingTo: Rcpp
 Encoding: UTF-8
