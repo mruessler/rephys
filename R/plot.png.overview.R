@@ -1,6 +1,6 @@
 #' plot.png.overview
 #'
-#' \code{plot.png.overview} A function to create png overviews of ephys log files
+#' @description \code{plot.png.overview} A function to create png overviews of ephys log files
 #' @param wd working directory where the data is. It is required to use the folder containing the data, meta, and png subfolders as input
 #' @param maxchunk numeric add a maximum number of files to be processed at once
 #' @export
