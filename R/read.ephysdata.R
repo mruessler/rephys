@@ -21,7 +21,7 @@ read.ephysdata <- function(files, folder, mc = TRUE) {
 		datalist <- parallel::mclapply(paste0(folder, "/", files), readr::read_csv, col_names = FALSE, col_types = "dd")
 	}
 	else {
-		datalist <- lapply(paste0(folder, "/", files), readr::read_csv, col_names = FALSE, col_types = "d")
+		datalist <- lapply(paste0(folder, "/", files), readr::read_csv, col_names = FALSE, col_types = "dd")
 	}
 	# organize the data into a data frame
  	datadf <- do.call(cbind, datalist)
