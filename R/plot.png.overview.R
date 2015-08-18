@@ -7,11 +7,9 @@
 plot.png.overview <- function(wd = NA, maxchunk = 100) {
 	# check whether a working directory was specified
 	if (is.na(wd) == TRUE) {
-		stop("Error, no directory specified.")
+		wd <- readline(prompt = "Please enter a folder path! ")
 	}
-	else {
-		dd <- paste0(wd, "/data")
-	}
+	dd <- paste0(wd, "/data")
 	# get the files from folder
 	storage <- dir(dd, pattern = ".csv")
 	writeLines(paste(length(storage), "files to process."))
