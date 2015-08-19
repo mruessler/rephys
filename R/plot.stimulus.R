@@ -4,7 +4,7 @@
 #' @param stimdf a data frame containing stimulus data
 #' @param side select the side of which the stimulus is from
 plot.stimulus <- function(stimdf, side = "left") {
-	par(col = "darkgrey")
+	par(col = "black")
 	if (side == "left") {
 		plot(stimdf$time, stimdf$leftbar, type = "l", axes = F, xlab = NA, ylab = NA)
 	}
