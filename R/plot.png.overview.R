@@ -1,7 +1,7 @@
 #' plot.png.overview
 #'
 #' @description \code{plot.png.overview} A function to create png overviews of ephys log files
-#' @param wd working directory where the data is. It is required to use the folder containing the data, meta, and png subfolders as input
+#' @param wd character working directory where the data is. It is required to use the folder containing the data, meta, and png subfolders as input
 #' @param maxchunk numeric add a maximum number of files to be processed at once
 #' @export
 plot.png.overview <- function(wd = NA, maxchunk = 100) {
@@ -24,22 +24,22 @@ plot.png.overview <- function(wd = NA, maxchunk = 100) {
 		# get the data from the files
 		data <- read.ephysdata(files, folder = dd, mc = TRUE)
 		# plot the data from the files
-		writeLines("Start writing png files.")
+		writeLines("Writing png files.")
 		for (i in 1:length(files)) {
 			# dual recordings
 			if (ncol(data) == 2 * length(files)) {
 				tsdata <- ts(data = data[((i * 2) - 1):(i * 2)], start = 1/25000, end = 10, deltat = 1/25000)
 				png(width = 960, filename = sub(pattern = ".csv", replacement = "--raw.png", x = paste0(wd, "/png/", files)[i]))
-				par(mfrow = c(2, 1), bty = "n")
-				plot(tsdata[, 1], xlab = "", ylab = "Amplitude", xaxt = "n", main = files[i])
-				plot(tsdata[, 2], xlab = "Time (s)", ylab = "Amplitude")
+				par(mfrow = c(2, 1), bty = "n", omi = c(rep(0.5, 4)), mai = c(0.1, 0.1, 0.2, 0.1))
+				plot(tsdata[, 1], ylim = c(-0.2, 0.15), xlab = "", ylab = "Amplitude", xaxt = "n", main = files[i])
+				plot(tsdata[, 2], ylim = c(-0.2, 0.15), xlab = "Time (s)", ylab = "Amplitude")
 				dev.off()
 			}
 			# single recordings
 			else {
 				tsdata <- ts(data = data[i], start = 1/25000, end = 10, deltat = 1/25000)
-				png(width = 960, filename = sub(pattern = ".csv", replacement = ".png", x = paste0(wd, "/png/", files)[i]))
-				plot(tsdata, xlab = "Time (s)", ylab = "Amplitude", main = files[i])
+				png(width = 960, filename = sub(pattern = ".csv", replacement = "--raw.png", x = paste0(wd, "/png/", files)[i]))
+				plot(tsdata, ylim = c(-0.2, 0.15), xlab = "Time (s)", ylab = "Amplitude", main = files[i])
 				dev.off()
 			}
 		}
