@@ -1,9 +1,10 @@
 #' plot.spikes
 #'
-#' @param spikes
-#' @param filelist
-#' @param stimlist
-#' @param outputdir
+#' @description plot spike data
+#' @param spikes spike data
+#' @param filelist list of files to plot
+#' @param stimlist list of used stimuli
+#' @param outputdir plot output direction
 #'
 #' @return nothing
 #' @export

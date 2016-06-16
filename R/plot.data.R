@@ -1,9 +1,9 @@
 #' plot.data
 #'
 #' @param spikes data frame of spike data
-#' @param filelist
-#' @param stimlist
-#' @param outputdir
+#' @param filelist list of files to plot
+#' @param stimlist currently not used
+#' @param outputdir the output directory where the plots will be saved
 #'
 #' @return nothing yet
 #' @export

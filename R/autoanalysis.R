@@ -4,11 +4,11 @@
 #' @param mc logical enables or disables the use of multiple cores
 #' @return spikes processed spike data
 #' @export
-autoanalysis <- function(mc = TRUE) {
+autoanalysis <- function(mc = TRUE, env = NULL) {
 		# temporarily function for testing purposes
 	# select a data dir, meta dir, stim dir
 	# dd <- "~/datarepos/ephysfull/data"
-	env <- "wolke"
+	env <- "data"
 	if (env == "wolke") {
 		dd <- "~/wolke/work/ephys/data"
 		md <- "~/wolke/work/ephys/meta/"
@@ -22,24 +22,25 @@ autoanalysis <- function(mc = TRUE) {
 		pd <- "~/datarepos/ephys/png/"
 	}
 	if (env == "data") {
-		dd <- "~/datarepos/ephysfull/data/"
-		md <- "~/datarepos/ephysfull/meta/"
-		pd <- "~/datarepos/ephysfull/png/"
+		dd <- "~/datarepos/2016-05-20/data/"
+		md <- "~/datarepos/2016-05-20/meta/"
+		pd <- "~/datarepos/2016-05-20/png/"
 	}
 	files <- dir(dd, pattern = ".csv")
 	# reduce the amount of files for development
 	dev <- TRUE
 	if (dev == TRUE) {
-		files <- files[(length(files) - 1):length(files)]
+		files <- files[(length(files) - 11):length(files)]
 	}
 	# get the data
 	start.time <- timer()
 	data <- read.ephysdata(files, folder = dd, mc = mc)
 	time.diff <- timer(start.time)
 	writeLines(paste0("Data loaded (", time.diff, " seconds)."))
+	gc()
 	# transform data into spike data
 	start.time <- timer()
-	spikes <- batch.spikes(data, std.factor = 4)
+	spikes <- batch.spikes(data, std.factor = 3)
 	time.diff <- timer(start.time)
 	writeLines(paste0("Data transformed to spike data (", time.diff, " seconds)."))
 	# prune spikes

@@ -1,16 +1,29 @@
 Package: rephys
 Type: Package
 Title: Analyse electrophysiological data
-Version: 1.1
+Version: 1.1.1
 Date: 2015-07-01
 Author: Martin Rüßler
 Maintainer: Martin Rüßler <martin.ruessler@uni-bielefeld.de>
-Description: This is a collection of functions to help analyse electrophysiological data.
+Description: This is a collection of functions to help analyse
+    electrophysiological data.
 License: GPL-3
-Depends: R (>= 3.1.0), ggplot2, grid, parallel, plyr, readr, signal
-Imports: parallel, Rcpp (>= 0.11.6), signal
+Depends:
+    R (>= 3.1.0),
+    ggplot2,
+    grid,
+    parallel,
+    plyr,
+    readr,
+    signal
+Imports:
+    parallel,
+    Rcpp (>= 0.11.6),
+    signal
 LinkingTo: Rcpp
 Encoding: UTF-8
-Suggests: testthat,
+Suggests:
+    testthat,
     knitr
 VignetteBuilder: knitr
+RoxygenNote: 5.0.1
