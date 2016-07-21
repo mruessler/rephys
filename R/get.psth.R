@@ -1,7 +1,7 @@
 #' get.psth
 #'
 #' @description calculate a PSTH histogram
-#' @param spikes
+#' @param spikes a matrix of spike data
 #' @param binwidth im ms
 #' @param samplerate in Hertz
 #'

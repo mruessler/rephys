@@ -1,8 +1,8 @@
 #' plot.isipsth
 #'
 #' @param spikes a spike data frame
-#' @param binwidth
-#' @param samplerate
+#' @param binwidth width of the bin
+#' @param samplerate the samplerate of the data
 #'
 #' @return nothing yet
 #' @export
