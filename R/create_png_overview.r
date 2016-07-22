@@ -27,6 +27,7 @@
 #' \code{create_png_overview} A function to create png overviews of ephys log files
 #' @param wd working directory where the data is. It is required to use the folder containing the data, meta, and png subfolders as input
 #' @export
+#'
 create_png_overview <- function(wd = NA) {
 	# check whether a working directory was specified
 	if (is.na(wd) == TRUE) {

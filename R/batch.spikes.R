@@ -1,4 +1,3 @@
-<<<<<<< HEAD:R/batch_spikes.r
 #' batch_spikes
 #'
 #' This file is part of the rephys package.
@@ -25,19 +24,14 @@
 #' Forschungsgemeinschaft (DFG) in the context of the German
 #' Excellence Initiative.
 #'
-#' \code{batch_spikes} a first try on copying the functionality of the matlab toolbox batch_spikes.m function
-=======
-#' batch.spikes
-#'
-#' \code{batch.spikes} a first try on copying the functionality of the matlab toolbox batch_spikes.m function
->>>>>>> dev:R/batch.spikes.R
-#' more documentation might come in the future
+#' \code{batch_spikes} more documentation might come in the future
 #' steps: »unpack« the rawdata into filenames and data. find spikes in the data streams pack the data into one array
-#'
 #' @param rawdata ephys data to work on
 #' @param std.factor depending on the quality of the data. A value of 1 is a good value for data with a really good signal to noise ratio.
 #' @param sigma not yet implemented
 #' @return processed spike data
+#' @export
+#'
 batch.spikes <- function(rawdata, std.factor = 1, sigma = NA) {
 	# preallocate a data frame; each recorded channel is in one column, data values are in rows
 	spikes <- matrix(data = NA_real_, nrow = nrow(rawdata), ncol = ncol(rawdata))

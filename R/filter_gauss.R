@@ -1,4 +1,4 @@
-#' get_H1signal
+#' filter_gauss
 #'
 #' This file is part of the rephys package.
 #'
@@ -24,9 +24,28 @@
 #' Forschungsgemeinschaft (DFG) in the context of the German
 #' Excellence Initiative.
 #'
-#' \code{get_H1signal} a copy of the matlab function with the same name. Since the data are not packed in a container together with metadata it is a simplified version.
-#' @param data data from one recording file (2 channels)
-#' @return the data in a data frame
-get_H1signal <- function(data) {
-		return(data.frame(data))
+#' \code{filter_gauss} this function applies a gaussian convolution filter to the input signal. the window width is specified by sigma
+#' @param signal the input signal
+#' @param sigma specifies the window width
+#' @export
+#'
+filter_gauss <- function(signal, sigma) {
+	# calculate window size
+	alpha <- 2.5
+	window_size <- round(sigma * alpha)
+	# make sure window size is an odd number
+	if (window_size %% 2 == 0) {
+		window_size <- window_size + 1
+	}
+	# generate filter
+	gauss_window <- signal::gausswin(window_size, alpha)
+	# normalize the filter kernel
+	gauss_window <- gauss_window / sum(gauss_window)
+	# compute the signal mean
+	signal_mean <- mean(signal)
+	# convolve zero-mean signal
+	signal_conv <- signal::conv(signal - signal_mean, gauss_window)
+	# select valid section of the result and add mean
+	signal_filtered <- signal_conv(((window_size - 1) / 2 + 1):nrow(signal_filtered) - (window_size - 1) / 2) + signal_mean
+	return(signal_filtered)
 }

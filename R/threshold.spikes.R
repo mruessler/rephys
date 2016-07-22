@@ -1,4 +1,3 @@
-<<<<<<< HEAD:R/threshold_spikes.r
 #' threshold_spikes
 #'
 #' This file is part of the rephys package.
@@ -26,15 +25,11 @@
 #' Excellence Initiative.
 #'
 #' \code{threshold_spikes} apply a threshold to the input signal and return a vector of 0 and 1
-=======
-#' threshold.spikes
-#' 
-#' \code{threshold.spikes} apply a threshold to the input signal and return a vector of 0 and 1
->>>>>>> dev:R/threshold.spikes.R
 #' @param signal numeric vector of ephys data
 #' @param threshold numeric value
 #' @return a matrix with spikes
 #' @export
+#'
 threshold.spikes <- function(signal, threshold) {
 	# check where the signal exceeds the threshold an convert the resulting vector from logical to numeric values of 0 and 1
 	ts <- (signal > threshold) + 0

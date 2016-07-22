@@ -1,4 +1,3 @@
-<<<<<<< HEAD:R/get_H1signal.r
 #' get_H1signal
 #'
 #' This file is part of the rephys package.
@@ -25,14 +24,11 @@
 #' Forschungsgemeinschaft (DFG) in the context of the German
 #' Excellence Initiative.
 #'
-#' \code{get_H1signal} a copy of the matlab function with the same name. Since the data are not packed in a container together with metadata it is a simplified version.
-=======
-#' get.H1signal
-#' 
-#' \code{get.H1signal} a copy of the matlab function with the same name. Since the data are not packed in a container together with metadata it is a simplified version.
->>>>>>> dev:R/get.H1signal.R
+#' \code{get_H1signal} Since the data are not packed in a container together with metadata it is a simplified version.
 #' @param data data from one recording file (2 channels)
 #' @return the data in a data frame
+#' @export
+#'
 get.H1signal <- function(data) {
 		return(data.frame(data))
 }

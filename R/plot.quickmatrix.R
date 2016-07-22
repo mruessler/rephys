@@ -1,4 +1,3 @@
-<<<<<<< HEAD:R/plot_quickmatrix.r
 #' plot_quickmatrix
 #'
 #' This file is part of the rephys package.
@@ -26,14 +25,11 @@
 #' Excellence Initiative.
 #'
 #' \code{startanalysis} This function plots each column of a data matrix
-=======
-#' plot.quickmatrix
-#' 
-#' \code{plot.quickmatrix} This function plots each column of a data matrix
->>>>>>> dev:R/plot.quickmatrix.R
+#'
 #' @param matrix is the data matrix
 #' @param filename is the filename prefix
 #' @export
+#'
 plot.quickmatrix <- function(matrix, filename = "spike") {
 	for (i in 1:ncol(matrix)) {
 		png(filename = paste0(filename, i, ".png"))

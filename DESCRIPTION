@@ -1,8 +1,8 @@
 Package: rephys
 Type: Package
 Title: Analyse electrophysiological data
-Version: 1.1.1
-Date: 2015-07-01
+Version: 1.1.2
+Date: 2016-07-21
 Author: Martin Rüßler
 Maintainer: Martin Rüßler <martin.ruessler@uni-bielefeld.de>
 Description: This is a collection of functions to help analyse

@@ -1,4 +1,3 @@
-<<<<<<< HEAD:R/readmetadata.r
 #' readmetadata
 #'
 #' This file is part of the rephys package.
@@ -26,17 +25,11 @@
 #' Excellence Initiative.
 #'
 #' @description a function to read ephys metadata files.
-=======
-#' read.metadata
-#'
-#' @description a function to read ephys metadata files.
-#'
-#' @param files the files metadata should be loaded for
->>>>>>> dev:R/read.metadata.R
 #' @param datafolder where the data files are located
 #' @param metafolder where the metadata files are located
 #' @return returns a list with metadata for all files from the data folder
 #' @export
+#'
 read.metadata <- function(files, datafolder, metafolder) {
 	# check whether the folder contains the folder meta with grepl(ogical)
 # 	if (grepl("/meta", folder) == FALSE) {

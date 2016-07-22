@@ -34,6 +34,7 @@
 #' Sys.sleep(3)
 #' time.diff <- timer(function.start)
 #' print(paste("Function took", time.diff, "seconds."))
+#'
 timer <- function(time.start = FALSE) {
 	# a small timer function which returns the current time or the time difference to a time object
 	if (time.start == FALSE) {
