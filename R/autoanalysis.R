@@ -29,28 +29,14 @@
 #' @return spikes processed spike data
 #' @export
 #'
-autoanalysis <- function(mc = TRUE, env = NULL) {
-		# temporarily function for testing purposes
+autoanalysis <- function(mc = TRUE) {
+	# temporarily function for testing purposes
 	# select a data dir, meta dir, stim dir
-	# dd <- "~/datarepos/ephysfull/data"
-	env <- "data"
-	if (env == "wolke") {
-		dd <- "~/wolke/work/ephys/data"
-		md <- "~/wolke/work/ephys/meta/"
-		sd <- "~/wolke/work/ephys/lib/"
-		pd <- "~/wolke/work/ephys/png/"
-	}
-	else {
-		dd <- "~/datarepos/ephys/data/"
-		md <- "~/datarepos/ephys/meta/"
-		sd <- "~/datarepos/ephysstimlibrary/"
-		pd <- "~/datarepos/ephys/png/"
-	}
-	if (env == "data") {
-		dd <- "~/datarepos/2016-05-20/data/"
-		md <- "~/datarepos/2016-05-20/meta/"
-		pd <- "~/datarepos/2016-05-20/png/"
-	}
+	sd <- "~/datarepos/ephysstimlibrary/"
+	dd <- "~/datarepos/2016-05-20/data/"
+	md <- "~/datarepos/2016-05-20/meta/"
+	pd <- "~/datarepos/2016-05-20/png/"
+
 	files <- dir(dd, pattern = ".csv")
 	# reduce the amount of files for development
 	dev <- TRUE
